@@ -1,7 +1,7 @@
 {
   "waitForEnterForFilteredHints": false,
   "hideHud": true,
-  "keyMappings": "# Insert your preferred key mappings here.\nmap Z LinkHints.activateMode action=hover\nmap M LinkHints.activateMode action=focus\nmap C LinkHints.activateMode action=copy-text\nmap <a-i> passNextKey # ya que i es insertar, alt seria una variante similar",
+  "keyMappings": "# Insert your preferred key mappings here.\nmap <a-h> LinkHints.activateMode action=hover\nmap <a-F> LinkHints.activateMode action=focus\nmap <a-i> passNextKey\n# ya que i es insertar, alt seria una variante similar",
   "linkHintCharacters": "asdf;lkj",
   "newTabUrl": "pages/blank.html",
   "grabBackFocus": true,
