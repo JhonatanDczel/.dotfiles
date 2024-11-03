@@ -28,6 +28,7 @@ nnoremap <F6> :!echo "Ejecucion: \n" && ./o < i && echo ""<CR>
 
 syntax on
 filetype on
+set backspace=indent,eol,start
 
 colorscheme habamax
 "habamax (Un poco oscuro), con el dolor de mi corazon :"3
