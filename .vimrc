@@ -29,32 +29,21 @@ nnoremap <C-h> <C-W>h
 " Keybindings CP 
 
 nnoremap <Leader>e :!touch %:r.excalidraw.png && code %:r.excalidraw.png<cr>
-"nnoremap <F5> :w<CR>:!g++ % -o o && echo "Compilacion exitosa :3"<CR>
-"nnoremap <F6> :!echo "Ejecucion: \n" && ./o < i && echo ""<CR>
 
-"nnoremap <Leader>cc :w<CR>:silent !g++ % -o executable > problem.log 2>&1 && echo "Compilacion exitosa :3" >> problem.log<CR>:redr!<CR>
-"nnoremap <Leader>ce :!echo "===========================" > problem.out && ./executable < data.in >> problem.out; echo "\n===========================" >> problem.out<CR> :redraw!<CR>
-"nnoremap <Leader>cr :w<CR>:!g++ % -o o && echo "===========================" && ./o < i && ./o < i > o.out; echo "==========================="<CR>
-
-" Definimos las funciones principales para compilar y ejecutar
 function! Compile()
   execute "w"
-  silent execute "!g++ % -o executable > problem.log 2>&1 && echo 'Compilacion exitosa :3' >> problem.log"
-  redraw!
-endfunction
-
-function! Execute1()
-  silent execute "!./executable < data.in >> problem.out && echo 'Ejecución exitosa\\n' > problem.log && time ./executable < data.in >> problem.log"
+  silent execute "!g++ % -o runfiles/executable > runfiles/problem.log 2>&1 && echo 'Compilacion exitosa :3' >> runfiles/problem.log"
   redraw!
 endfunction
 
 function! Execute()
-  silent execute "!./executable < data.in > problem.out"
+  silent execute "!./runfiles/executable < runfiles/data.in > runfiles/problem.out"
   if v:shell_error == 0
-    silent execute "!echo 'Ejecución completa:' > problem.log"
-    silent execute "!/usr/bin/time -o problem.log -a -f '⏱️ Tiempo Sistema (aproximado): %e s\\n📈 Memoria Máxima: %M KB' ./executable < data.in > /dev/null"
+    silent execute "!echo 'Ejecución completa:' > runfiles/problem.log"
+    "silent execute "!/usr/bin/time -o runfiles/problem.log -f '⏱️ Time: %%S s\\n📈 Memory: %%M KB' ./runfiles/executable < runfiles/data.in > /dev/null"
+    silent execute "!/usr/bin/time -o runfiles/problem.log -f \"> Time: \\%S s\\n> Memory: \\%M KB\" ./runfiles/executable < runfiles/data.in > /dev/null"
   else
-    silent execute "!echo 'Error en la ejecución' > problem.log"
+    silent execute "!echo 'Error en la ejecución' > runfiles/problem.log"
   endif
   redraw!
 endfunction
